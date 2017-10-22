@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="joaopauloroslindo.contatos.MainActivity">
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/user"
+        android:scaleType="fitCenter"
+        android:scaleY="2"
+        android:scaleX="1.2"
+        />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:src="@drawable/google" />
+
+            <LinearLayout
+                android:layout_weight="8"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Salvar em:" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="jroslindotab@gmail.com" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_width="10dp"
+                android:src="@drawable/arrowdown"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:src="@drawable/user"
+                android:scaleType="fitCenter"/>
+
+            <EditText
+                android:layout_weight="8"
+                android:text="Nome:"
+                />
+
+            <ImageView
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_width="10dp"
+                android:src="@drawable/arrowdown"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <Space
+                android:layout_weight="2"
+                />
+
+            <EditText
+                android:layout_weight="10"
+                android:text="Sobrenome:"
+                />
+            <Space
+                android:layout_weight="2"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:src="@drawable/phone"
+                android:scaleType="fitCenter"
+                />
+
+            <EditText
+                android:layout_weight="8"
+                android:text="Telefone:"
+                />
+
+            <Space
+                android:layout_weight="2"
+                />
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <Space
+                android:layout_weight="2"
+                />
+
+            <Spinner
+                android:layout_weight="2"
+
+                />
+
+            <Space
+                android:layout_weight="10"
+                />
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <ImageView
+                android:layout_weight="2"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:src="@drawable/mail"
+                />
+
+            <EditText
+                android:layout_weight="8"
+                android:text="E-mail:"
+
+                />
+
+            <Space
+                android:layout_weight="12"
+                />
+        </TableRow>
+
+        <TableRow
+            android:minHeight="50dp">
+
+            <Space
+                android:layout_weight="2"
+                />
+
+            <Spinner
+                android:layout_weight="2"
+
+                />
+
+            <Space
+                android:layout_weight="10"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
