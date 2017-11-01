@@ -26,14 +26,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (Seleciona.getCheckedRadioButtonId() == R.id.RadioCirculo) {
             Intent intencao = new Intent(getApplicationContext(), PedeDadoCirculo.class);
+
             startActivity(intencao);
         }
         if (Seleciona.getCheckedRadioButtonId() == R.id.RadioQuadrado) {
             Intent intencao = new Intent(getApplicationContext(), PedeDadoQuadrado.class);
+
             startActivity(intencao);
         }
         if (Seleciona.getCheckedRadioButtonId() == R.id.RadioTriangulo) {
             Intent intencao = new Intent(getApplicationContext(), PedeDadoTriangulo.class);
+
             startActivity(intencao);
         }
 

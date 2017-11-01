@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PedeDadoCirculo extends AppCompatActivity {
 
@@ -16,6 +17,10 @@ public class PedeDadoCirculo extends AppCompatActivity {
 
     public void ProximaJanela (View quemclicou){
         EditText Dado = (EditText) findViewById(R.id.RaioDado);
+        if(Dado.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Todos os dados devem ser preenchidos", Toast.LENGTH_LONG).show();
+            return;
+        }
         Double dado = Double.parseDouble(Dado.getText().toString());
         Double Pi= 3.14159265359;
 
@@ -27,7 +32,7 @@ public class PedeDadoCirculo extends AppCompatActivity {
         Intent intencao = new Intent(getApplicationContext(), RespostaCirculo.class);
 
         intencao.putExtras(mochilaCirculo);
-
+        finish();
         startActivity(intencao);
     }
 }

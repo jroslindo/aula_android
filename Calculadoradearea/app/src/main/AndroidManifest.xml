@@ -9,19 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PedeDadoCirculo" />
-        <activity android:name=".PedeDadoQuadrado" />
-        <activity android:name=".PedeDadoTriangulo" />
-        <activity android:name=".RespostaCirculo" />
-        <activity android:name=".RespostaQuadrado" />
-        <activity android:name=".RespostaTriangulo"></activity>
+        <activity android:name=".PedeDadoCirculo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PedeDadoQuadrado"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PedeDadoTriangulo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RespostaCirculo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RespostaQuadrado"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RespostaTriangulo"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -21,8 +21,7 @@ public class RespostaTriangulo extends AppCompatActivity {
     }
 
     public void voltar (View quemclicou){
-        Intent volta = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(volta);
+        finish();
     }
 
 
