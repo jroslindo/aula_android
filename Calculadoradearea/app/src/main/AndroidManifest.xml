@@ -19,7 +19,9 @@
         <activity android:name=".PedeDadoCirculo" />
         <activity android:name=".PedeDadoQuadrado" />
         <activity android:name=".PedeDadoTriangulo" />
-        <activity android:name=".RespostaCirculo"></activity>
+        <activity android:name=".RespostaCirculo" />
+        <activity android:name=".RespostaQuadrado" />
+        <activity android:name=".RespostaTriangulo"></activity>
     </application>
 
 </manifest>

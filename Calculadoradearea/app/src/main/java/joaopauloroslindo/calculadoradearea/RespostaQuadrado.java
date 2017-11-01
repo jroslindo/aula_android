@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+public class RespostaQuadrado extends AppCompatActivity {
 
-public class RespostaCirculo extends AppCompatActivity {
-
-    private Bundle MochilaRecebida;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resposta_circulo);
+        setContentView(R.layout.activity_resposta_quadrado);
+
         TextView textResposta = (TextView) findViewById(R.id.OndeVaiAResposta);
 
         Double calculo = getIntent().getExtras().getDouble("Resposta");
@@ -24,12 +23,5 @@ public class RespostaCirculo extends AppCompatActivity {
     public void voltar (View quemclicou){
         Intent volta = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(volta);
-
     }
-
-
-
-
-
-
 }
