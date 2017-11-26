@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RecycleViewExercise</string>
+    <string name="title_activity_adicionar_abastecimento">AdicionarAbastecimento</string>
+    <string name="title_activity_escolhe_data">EscolheData</string>
+
+    <string-array name="Array_Postos">
+        <item>Texaco</item>
+        <item>Shell</item>
+        <item>Petrobras</item>
+        <item>Ipiranga</item>
+        <item>Outro</item>
+    </string-array>
+
+</resources>
