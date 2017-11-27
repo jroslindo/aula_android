@@ -14,9 +14,6 @@ public class Veiculos {
     private String dataAbastecimento;
     private String posto;
 
-
-
-
     public Veiculos(int kilometragem, double combustivel, String dataAbastecimento, String posto){
         this.combustivel = combustivel;
         this.dataAbastecimento = dataAbastecimento;

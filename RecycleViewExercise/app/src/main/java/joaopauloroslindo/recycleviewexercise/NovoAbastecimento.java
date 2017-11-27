@@ -43,20 +43,19 @@ public class NovoAbastecimento extends AppCompatActivity {
 
     public void confirmar (View quemclicou){
         EditText etkilometragem = (EditText) findViewById(R.id.etKilometragem);
-        //EditText etAbastecido = (EditText) findViewById(R.id.etLitros);
-        //EditText etData = (EditText) findViewById(R.id.etData);
-        //Spinner etPosto = (Spinner) findViewById(R.id.spinner_postos);
+        EditText etAbastecido = (EditText) findViewById(R.id.etLitros);
+        EditText etData = (EditText) findViewById(R.id.etData);
+        Spinner etPosto = (Spinner) findViewById(R.id.spinner_postos);
 
-        String teste="A";
+
 
         Intent intencao = new Intent(this, MainActivity.class);
-        intencao.putExtra("dado_kilometragem1", teste);
-       // intencao.putExtra("dado_combustivel1", etAbastecido.toString());
-       // intencao.putExtra("dado_dataAbastecimento1", etData.toString());
-        //intencao.putExtra("dado_posto1", etPosto.getSelectedItem().toString());
+        intencao.putExtra("dado_kilometragem1", etkilometragem.getText().toString());
+        intencao.putExtra("dado_combustivel1", etAbastecido.getText().toString());
+        intencao.putExtra("dado_dataAbastecimento1", etData.getText().toString());
+        intencao.putExtra("dado_posto1", etPosto.getSelectedItem().toString());
 
         setResult(Activity.RESULT_OK, intencao);
         finish();
-
     }
 }
