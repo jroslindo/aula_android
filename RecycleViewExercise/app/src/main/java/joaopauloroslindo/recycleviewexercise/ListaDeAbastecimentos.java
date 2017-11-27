@@ -14,18 +14,32 @@ public class ListaDeAbastecimentos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_abastecimentos);
 
-        RecyclerView rvLista = (RecyclerView) findViewById(R.id.rvLista);
-        VeiculoAdapter adaptador = new VeiculoAdapter();
+
 
         Veiculos teste = new Veiculos();
-        teste.setCombustivel(Double.parseDouble(getIntent().getStringExtra("0")));
-        teste.setPosto((getIntent().getStringExtra("3")));
-        teste.setKilometragem(Integer.parseInt(getIntent().getStringExtra("2")));
-        teste.setDataAbastecimento((getIntent().getStringExtra("1")));
-
         ArrayList<Veiculos> testeLista = new ArrayList<>();
-        testeLista.add(teste);
+        String soParaNome="";
+        String soParaNome1="";
+        String soParaNome2="";
+        String soParaNome3="";
+        int i=0;
+        while(i<getIntent().getExtras().getInt("tamanho")){
+            soParaNome=""+i;
+            soParaNome1=""+(i+1);
+            soParaNome2=""+(i+2);
+            soParaNome3=""+(i+3);
+            testeLista.add(new Veiculos(getIntent().getExtras().getInt(soParaNome2),
+                    getIntent().getExtras().getDouble(soParaNome),
+                    getIntent().getExtras().getString(soParaNome1),
+                    getIntent().getExtras().getString(soParaNome3)));
+            i+=4;
+        }
 
+
+
+
+        RecyclerView rvLista = (RecyclerView) findViewById(R.id.rvLista);
+        VeiculoAdapter adaptador = new VeiculoAdapter();
         adaptador.setListaVeiculos( testeLista);
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         rvLista.setAdapter( adaptador );

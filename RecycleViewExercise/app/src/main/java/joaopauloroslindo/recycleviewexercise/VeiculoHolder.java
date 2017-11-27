@@ -28,16 +28,15 @@ public class VeiculoHolder extends RecyclerView.ViewHolder {
         tvKilometragem.setText(Integer.toString(v.getKilometragem()));
         tvLitros.setText(Double.toString(v.getCombustivel()));
         tvData.setText(v.getDataAbastecimento());
-        //.setText(v.getDataAbastecimento());
 
-
-
-        /*if(v.getNome().toLowerCase().equals("gol")){
-            this.ivFotografia.setImageResource(R.drawable.gol);
-        }else if (v.getNome().toLowerCase().equals("f50")){
-            this.ivFotografia.setImageResource(R.drawable.ferrari);
-        }else{
-            this.ivFotografia.setImageResource(R.drawable.fusca);
-        }*/
+        if(v.getPosto().equals("Petrobras")){
+            ivPosto.setImageResource(R.drawable.petrobras);
+        }else if (v.getPosto().equals("Ipiranga")){
+            ivPosto.setImageResource(R.drawable.ipiranga);
+        }else if (v.getPosto().equals("Shell")){
+            ivPosto.setImageResource(R.drawable.shell);
+        }else if (v.getPosto().equals("Texaco")){
+            ivPosto.setImageResource(R.drawable.texaco);
+        }
     }
 }
