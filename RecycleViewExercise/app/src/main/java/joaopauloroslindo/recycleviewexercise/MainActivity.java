@@ -1,5 +1,6 @@
 package joaopauloroslindo.recycleviewexercise;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -93,13 +94,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
-        Veiculos para_o_array = new Veiculos();
+        if (requestCode==1){
+            if(resultCode== Activity.RESULT_OK){
+                Veiculos para_o_array = new Veiculos();
 
-        para_o_array.setKilometragem(Integer.parseInt(data.getStringExtra("dado_kilometragem1")));
-        para_o_array.setCombustivel(Double.parseDouble(data.getStringExtra("dado_combustivel1")));
-        para_o_array.setDataAbastecimento(data.getStringExtra("dado_dataAbastecimento1"));
-        para_o_array.setPosto(data.getStringExtra("dado_posto1"));
+                para_o_array.setKilometragem(Integer.parseInt(data.getStringExtra("dado_kilometragem1")));
+                para_o_array.setCombustivel(Double.parseDouble(data.getStringExtra("dado_combustivel1")));
+                para_o_array.setDataAbastecimento(data.getStringExtra("dado_dataAbastecimento1"));
+                para_o_array.setPosto(data.getStringExtra("dado_posto1"));
 
-        listaPrincipal.add(para_o_array);
+                listaPrincipal.add(para_o_array);
+            }
+        }
+
+
+
     }
 }

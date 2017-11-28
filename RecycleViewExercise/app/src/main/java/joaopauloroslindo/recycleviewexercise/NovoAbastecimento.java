@@ -29,10 +29,14 @@ public class NovoAbastecimento extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String BotaNaPorra = data.getStringExtra("Data_Retornado");
-        EditText aPorra = (EditText) findViewById(R.id.etData);
-        aPorra.setText(BotaNaPorra);
 
+        if (requestCode==1) {
+            if (resultCode == Activity.RESULT_OK) {
+                String BotaNaPorra = data.getStringExtra("Data_Retornado");
+                EditText aPorra = (EditText) findViewById(R.id.etData);
+                aPorra.setText(BotaNaPorra);
+            }
+        }
     }
 
     public void VaiParaEscolhaAData(View quemclicou) {
