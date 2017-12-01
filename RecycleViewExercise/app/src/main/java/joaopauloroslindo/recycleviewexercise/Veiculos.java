@@ -3,11 +3,13 @@ package joaopauloroslindo.recycleviewexercise;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by João on 27/11/2017.
  */
 
-public class Veiculos {
+public class Veiculos extends RealmObject{
 
     private int kilometragem;
     private double combustivel;

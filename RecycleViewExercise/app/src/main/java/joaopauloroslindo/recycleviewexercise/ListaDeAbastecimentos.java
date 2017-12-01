@@ -7,6 +7,9 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class ListaDeAbastecimentos extends AppCompatActivity {
 
     @Override
@@ -14,33 +17,20 @@ public class ListaDeAbastecimentos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_abastecimentos);
 
+        Realm realm = Realm.getDefaultInstance();
 
+        RealmResults<Veiculos> result1 = realm.where(Veiculos.class).findAll();
+        ArrayList<Veiculos> arrayParaResultado=new ArrayList<>();
 
-        Veiculos teste = new Veiculos();
-        ArrayList<Veiculos> testeLista = new ArrayList<>();
-        String soParaNome="";
-        String soParaNome1="";
-        String soParaNome2="";
-        String soParaNome3="";
-        int i=0;
-        while(i<getIntent().getExtras().getInt("tamanho")){
-            soParaNome=""+i;
-            soParaNome1=""+(i+1);
-            soParaNome2=""+(i+2);
-            soParaNome3=""+(i+3);
-            testeLista.add(new Veiculos(getIntent().getExtras().getInt(soParaNome2),
-                    getIntent().getExtras().getDouble(soParaNome),
-                    getIntent().getExtras().getString(soParaNome1),
-                    getIntent().getExtras().getString(soParaNome3)));
-            i+=4;
+        for(int i = 0; i < result1.size(); i++){
+            Veiculos atual = result1.get(i);
+            arrayParaResultado.add(atual);
         }
-
-
 
 
         RecyclerView rvLista = (RecyclerView) findViewById(R.id.rvLista);
         VeiculoAdapter adaptador = new VeiculoAdapter();
-        adaptador.setListaVeiculos( testeLista);
+        adaptador.setListaVeiculos( arrayParaResultado);//aki mudar
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         rvLista.setAdapter( adaptador );
     }

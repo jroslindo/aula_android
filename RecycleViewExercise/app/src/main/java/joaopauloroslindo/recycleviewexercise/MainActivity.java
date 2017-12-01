@@ -14,6 +14,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class MainActivity extends AppCompatActivity {
     ArrayList<Veiculos> listaPrincipal = new ArrayList<>();
 
@@ -22,19 +25,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Realm.init(this);
+
     }
 
     public void onStart() {
         super.onStart();  // Always call the superclass method first
-
-        if(listaPrincipal.size() > 0) {
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<Veiculos> result1 = realm.where(Veiculos.class).findAll();
+        if(result1.size() > 0) {
             Double totalLitros = 0.0;
-            for (int i = 0; i < listaPrincipal.size(); i++) {
-                totalLitros += listaPrincipal.get(i).getCombustivel();
+            for (int i = 0; i < result1.size(); i++) {
+                totalLitros += result1.get(i).getCombustivel();
             }
 
-            int ultimo = listaPrincipal.get(listaPrincipal.size() - 1).getKilometragem();
-            int primeiro = listaPrincipal.get(0).getKilometragem();
+            int ultimo = result1.get(result1.size() - 1).getKilometragem();
+            int primeiro = result1.get(0).getKilometragem();
             double resposta = 0;
             if (ultimo == primeiro) {
                 resposta = ultimo / totalLitros;
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             TextView tvresposta = (TextView) findViewById(R.id.tvResposta);
-            tvresposta.setText(String.format("%.4f", resposta));
+            tvresposta.setText(String.format("%.3f", resposta));
         }
     }
 
@@ -66,45 +73,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void VaiParaLista(View quemclicou) {
         Intent intencao = new Intent(getApplicationContext(), ListaDeAbastecimentos.class);
-        Bundle mochilinha = new Bundle();
-
-
-
-        int nomeVar = 0;
-        String muda="0";
-        for(int i=0; i<listaPrincipal.size(); i++){
-            mochilinha.putDouble( muda, listaPrincipal.get(i).getCombustivel());
-            nomeVar++;
-            muda=""+nomeVar;
-            mochilinha.putString(muda, listaPrincipal.get(i).getDataAbastecimento());
-            nomeVar++;
-            muda=""+nomeVar;
-            mochilinha.putInt(muda, listaPrincipal.get(i).getKilometragem());
-            nomeVar++;
-            muda=""+nomeVar;
-            mochilinha.putString(muda, listaPrincipal.get(i).getPosto());
-            nomeVar++;
-            muda=""+nomeVar;
-        }
-        mochilinha.putInt("tamanho", nomeVar);
-        intencao.putExtras(mochilinha);
         startActivity(intencao);
-
     }
 
 
     protected  void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode==1){
             if(resultCode== Activity.RESULT_OK){
-                Veiculos para_o_array = new Veiculos();
 
-                para_o_array.setKilometragem(Integer.parseInt(data.getStringExtra("dado_kilometragem1")));
-                para_o_array.setCombustivel(Double.parseDouble(data.getStringExtra("dado_combustivel1")));
-                para_o_array.setDataAbastecimento(data.getStringExtra("dado_dataAbastecimento1"));
-                para_o_array.setPosto(data.getStringExtra("dado_posto1"));
+                Realm realm = Realm.getDefaultInstance(); //cria objeto tipo realm
+                realm.beginTransaction(); // começa transação
 
-                listaPrincipal.add(para_o_array);
+                Veiculos paraOBanco = realm.createObject(Veiculos.class);
+                paraOBanco.setCombustivel(Double.parseDouble(data.getStringExtra("dado_combustivel1")));
+                paraOBanco.setDataAbastecimento(data.getStringExtra("dado_dataAbastecimento1"));
+                paraOBanco.setKilometragem(Integer.parseInt(data.getStringExtra("dado_kilometragem1")));
+                paraOBanco.setPosto(data.getStringExtra("dado_posto1"));
+                realm.copyFromRealm(paraOBanco);
+
+                realm.commitTransaction();
             }
+
         }
 
 
