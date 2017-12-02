@@ -5,14 +5,22 @@ import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class NovoAbastecimento extends AppCompatActivity {
 
@@ -54,16 +62,39 @@ public class NovoAbastecimento extends AppCompatActivity {
         Spinner etPosto = (Spinner) findViewById(R.id.spinner_postos);
 
 
-        Intent intencao = new Intent(this, MainActivity.class);
-        intencao.putExtra("dado_kilometragem1", etkilometragem.getText().toString());
-        intencao.putExtra("dado_combustivel1", etAbastecido.getText().toString());
-        intencao.putExtra("dado_dataAbastecimento1", etData.getText().toString());
-        intencao.putExtra("dado_posto1", etPosto.getSelectedItem().toString());
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<Veiculos> result1 = realm.where(Veiculos.class).findAll();
 
-        setResult(Activity.RESULT_OK, intencao);
-        finish();
+        int ultimo= Integer.parseInt(etkilometragem.getText().toString());
+
+        Time time = new Time();
+        time.setToNow();
 
 
+        if(result1.size()>0){
+            if(ultimo>result1.get(result1.size()-1).getKilometragem()){
+                Intent intencao = new Intent(this, MainActivity.class);
+                intencao.putExtra("dado_kilometragem1", etkilometragem.getText().toString());
+                intencao.putExtra("dado_combustivel1", etAbastecido.getText().toString());
+                intencao.putExtra("dado_dataAbastecimento1", etData.getText().toString());
+                intencao.putExtra("dado_posto1", etPosto.getSelectedItem().toString());
+
+                setResult(Activity.RESULT_OK, intencao);
+                finish();
+            }else{
+                Toast.makeText(getApplicationContext(), "Quilometragem invalida, insira uma quilometragem valida", Toast.LENGTH_SHORT).show();
+            }
+
+        }else{
+            Intent intencao = new Intent(this, MainActivity.class);
+            intencao.putExtra("dado_kilometragem1", etkilometragem.getText().toString());
+            intencao.putExtra("dado_combustivel1", etAbastecido.getText().toString());
+            intencao.putExtra("dado_dataAbastecimento1", etData.getText().toString());
+            intencao.putExtra("dado_posto1", etPosto.getSelectedItem().toString());
+
+            setResult(Activity.RESULT_OK, intencao);
+            finish();
+        }
 
     }
 }
